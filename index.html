@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <!--Font awesome-->
+    <script src="https://kit.fontawesome.com/30f18aba31.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="./custom.css" />
+    <title>Pomodo Timer</title>
+  </head>
+  <body class="bg-light">
+    <div id="loader" class="center"></div>
+    <script>
+      document.onreadystatechange = function () {
+        if (document.readyState !== 'complete') {
+          document.querySelector('body').style.visibility = 'hidden';
+          document.querySelector('#loader').style.visibility = 'visible';
+        } else {
+          document.querySelector('#loader').style.display = 'none';
+          document.querySelector('body').style.visibility = 'visible';
+        }
+      };
+    </script>
+    <div class="container mt-3">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <header>
+            <div class="d-flex align-content-center">
+              <i class="fas fa-angle-double-down fa-2x mr-2"></i>
+              <h3 class="mr-auto">PomodoFocus</h3>
+              <div>
+                <button
+                  type="button"
+                  data-toggle="modal"
+                  data-target="#settingModal"
+                  class="btn btn-info"
+                >
+                  Setting
+                </button>
+              </div>
+            </div>
+          </header>
+          <hr />
+          <section class="container">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link active"
+                  id="home-tab"
+                  data-toggle="tab"
+                  href="#home"
+                  role="tab"
+                  aria-controls="home"
+                  aria-selected="true"
+                  >Pomodoro</a
+                >
+              </li>
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link"
+                  id="profile-tab"
+                  data-toggle="tab"
+                  href="#profile"
+                  role="tab"
+                  aria-controls="profile"
+                  aria-selected="false"
+                  >Short Break</a
+                >
+              </li>
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link"
+                  id="contact-tab"
+                  data-toggle="tab"
+                  href="#contact"
+                  role="tab"
+                  aria-controls="contact"
+                  aria-selected="false"
+                  >Long Break</a
+                >
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div
+                class="tab-pane fade show active"
+                id="home"
+                role="tabpanel"
+                aria-labelledby="home-tab"
+              >
+                <!--pomoto timer -->
+                <div class="row justify-content-center">
+                  <div class="col-12 text-center p-5">
+                    <div class="display-3 font-weight-bold" id="pomo">25:00</div>
+                  </div>
+                  <div class="col-4">
+                    <button
+                      class="btn btn-primary btn-lg"
+                      value="start"
+                      onclick="pomoTimer(this)"
+                    >
+                      Start
+                    </button>
+                  </div>
+                  <div class="col-4">
+                    <button
+                      class="btn btn-warning btn-lg"
+                      value="stop"
+                      onclick="pomoTimer(this)"
+                    >
+                      Stop
+                    </button>
+                  </div>
+                  <audio
+                    src="https://www.w3schools.com/tags/horse.mp3"
+                    id="horse"
+                    type="audio/mpeg"
+                  >
+                    asdasdhorse
+                  </audio>
+
+                  <div class="col-4">
+                    <button class="btn btn-info btn-lg" value="reset" onclick="pomoTimer(this)">
+                      Reset
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!--pomoto timer end -->
+
+              <div
+                class="tab-pane fade"
+                id="profile"
+                role="tabpanel"
+                aria-labelledby="short-break-tab"
+              >
+                <!--short break content-->
+
+                <div class="row justify-content-center">
+                  <div class="col-12 text-center p-5">
+                    <div class="display-3 font-weight-bold" id="short-break">05:00</div>
+                  </div>
+                  <div class="col-4">
+                    <button
+                      class="btn btn-primary btn-lg"
+                      value="start"
+                      onclick="shortBreakTimer(this)"
+                    >
+                      Start
+                    </button>
+                  </div>
+                  <div class="col-4">
+                    <button
+                      class="btn btn-warning btn-lg"
+                      value="stop"
+                      onclick="shortBreakTimer(this)"
+                    >
+                      Stop
+                    </button>
+                  </div>
+
+                  <div class="col-4">
+                    <button
+                      class="btn btn-info btn-lg"
+                      value="reset"
+                      onclick="shortBreakTimer(this)"
+                    >
+                      Reset
+                    </button>
+                  </div>
+                </div>
+                <!--short break content end-->
+              </div>
+              <div
+                class="tab-pane fade"
+                id="contact"
+                role="tabpanel"
+                aria-labelledby="long-break-tab"
+              >
+                <!-- long break content -->
+                <div class="row justify-content-center">
+                  <div class="col-12 text-center p-5">
+                    <div class="display-3 font-weight-bold" id="long-break">15:00</div>
+                  </div>
+                  <div class="col-4">
+                    <button
+                      class="btn btn-primary btn-lg"
+                      value="start"
+                      onclick="longBreakTimer(this)"
+                    >
+                      Start
+                    </button>
+                  </div>
+                  <div class="col-4">
+                    <button
+                      class="btn btn-warning btn-lg"
+                      value="stop"
+                      onclick="longBreakTimer(this)"
+                    >
+                      Stop
+                    </button>
+                  </div>
+                  <audio
+                    src="https://www.w3schools.com/tags/horse.mp3"
+                    id="horse"
+                    type="audio/mpeg"
+                  >
+                    asdasdhorse
+                  </audio>
+
+                  <div class="col-4">
+                    <button
+                      class="btn btn-info btn-lg"
+                      value="reset"
+                      onclick="longBreakTimer(this)"
+                    >
+                      Reset
+                    </button>
+                  </div>
+                </div>
+
+                <!-- long break content end -->
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <audio src="https://www.w3schools.com/tags/horse.mp3" id="horse" type="audio/mpeg"></audio>
+    </div>
+
+    <!--Setting Modal-->
+    <div
+      class="modal fade"
+      id="settingModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Timer Setting</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="pomoTime">Pomo Time</label>
+              <input class="form-control" type="number" placeholder="pomo time" name="pomoTime" />
+            </div>
+            <div class="form-group">
+              <label for="shortTime">Short Break Time</label>
+              <input
+                class="form-control"
+                type="number"
+                placeholder="Short Break time"
+                name="shortTime"
+              />
+            </div>
+            <div class="form-group">
+              <label for="longTime">Long Break Time</label>
+              <input
+                class="form-control"
+                type="number"
+                placeholder="Long Break time"
+                name="longTime"
+              />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="saveConfig(this)">
+              Save changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Setting Modal End-->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./timer.js"></script>
+    <script>
+      var pomo;
+      var long;
+      var short;
+      
+      $(function () {
+        init();
+      });
+      function init() {
+        var config;
+        config = JSON.parse(localStorage.getItem('setting')) || {
+          pomo: {
+            time: 25,
+            id: 'pomo',
+          },
+          short: {
+            time: 5,
+            id: 'short-break',
+          },
+          long: {
+            time: 15,
+            id: 'long-break',
+          },
+        };
+        localStorage.setItem('setting', JSON.stringify(config));
+        pomo = new countDownTimer(config.pomo.time, config.pomo.id);
+        long = new countDownTimer(config.long.time, config.long.id);
+        short = new countDownTimer(config.short.time, config.short.id);
+        $('input[name=pomoTime]').val(config.pomo.time);
+        $('input[name=shortTime]').val(config.short.time);
+        $('input[name=longTime]').val(config.long.time);
+        console.log(config);
+        $('#' + config.pomo.id).text(config.pomo.time + ':00');
+        $('#' + config.long.id).text(config.long.time + ':00');
+        $('#' + config.short.id).text(config.short.time + ':00');
+      }
+      function timerControl(timer, val) {
+        switch (val) {
+          case 'start':
+            timer.start();
+            break;
+          case 'stop':
+            timer.stop();
+            break;
+          case 'reset':
+            timer.reset();
+            break;
+        }
+      }
+      function pomoTimer(elem) {
+        var timer;
+        let val = elem.value;
+        timerControl(pomo, val);
+      }
+
+      function shortBreakTimer(elem) {
+        var timer;
+        let val = elem.value;
+        timerControl(short, val);
+      }
+
+      function longBreakTimer(elem) {
+        var timer;
+        let val = elem.value;
+        timerControl(long, val);
+      }
+
+      function saveConfig() {
+        var config = JSON.parse(localStorage.getItem('setting'));
+        config.pomo.time = $('input[name=pomoTime]').val();
+        config.short.time = $('input[name=shortTime]').val();
+        config.long.time = $('input[name=longTime]').val();
+        localStorage.setItem('setting', JSON.stringify(config));
+        init();
+        $('#settingModal').modal('hide');
+      }
+    </script>
+  </body>
+</html>
